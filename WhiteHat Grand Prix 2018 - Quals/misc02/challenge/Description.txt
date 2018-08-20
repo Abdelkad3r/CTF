@@ -1,0 +1,8 @@
+-- Dynamic Score [Point: 100]--
+Find the private key and decrypt the secret inside the picture
+material.grandprix.whitehatvn.com/misc02
+MD5: 2cad267bb17d5f31551c0d8713e41a77
+
+-- Hint --
+saintgiong.jpg.pgp    18/08/2018 11:23:48
+outguess              18/08/2018 11:58:59
