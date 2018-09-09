@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+#TokyoWesterns CTF 4th 2018 | Cryptography [Revolutional Secure Angou - 156pts]
+#@Abdelkader
+
+import gmpy
+from gmpy2 import isqrt
+from Crypto.Util.number import *
+
+N = 16809924442712290290403972268146404729136337398387543585587922385691232205208904952456166894756423463681417301476531768597525526095592145907599331332888256802856883222089636138597763209373618772218321592840374842334044137335907260797472710869521753591357268215122104298868917562185292900513866206744431640042086483729385911318269030906569639399362889194207326479627835332258695805485714124959985930862377523511276514446771151440627624648692470758438999548140726103882523526460632932758848850419784646449190855119546581907152400013892131830430363417922752725911748860326944837167427691071306540321213837143845664837111
+e = 65537
+c = open("flag.encrypted", "rb").read()
+c = c.encode("hex")
+c = int(c, 16)
+
+for k in range(1, 100000):
+	q = isqrt(k * N / e)         # q = ((k * N) / e) ^ 2
+	for q in range(q-100, q+100):
+		if N % q == 0:
+			print "[+] Found q: ", q
+			print "[+] Calculated p: ", N / q
+			print "[+] Calculated phi: ", ((N / q) - 1) * (q - 1)
+			print "[+] Calculated d: ", gmpy.invert(e, ((N / q) - 1) * (q - 1))
+			print "[+] Decrypted flag.encrypted and Found the message m: ", pow(c, gmpy.invert(e, ((N / q) - 1) * (q - 1)), N)
+			m = pow(c, gmpy.invert(e, ((N / q) - 1) * (q - 1)), N)
+			print "[+] FLAG is: ", long_to_bytes(m)
+			break
