@@ -4,3 +4,4 @@ echo "aaawn";
 }else{
 $flag ="F#{wtf_5trp0s_}";
 }
+?>
